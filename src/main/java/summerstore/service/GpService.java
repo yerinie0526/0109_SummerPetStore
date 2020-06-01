@@ -14,7 +14,7 @@ public class GpService {
 	
 	// 수정
 	@Transactional
-	public void updateGP(Comment comment) { // 매개변수 고려 필요
+	public int updateGP(Comment comment) { // 매개변수 고려 필요
 		return commentRepository.updateComment(comment);
 	}
 	
