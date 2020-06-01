@@ -1,5 +1,5 @@
 package summerpetstore.dao;
 
-public class CartDao {
+public class CartDAO {
 
 }
