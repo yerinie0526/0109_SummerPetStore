@@ -1,8 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-<mapper namespace="summerpetstore.repository.mapper.GPCommentMapper">   
+<mapper namespace="summerpetstore.repository.mapper.GpMapper">   
   <cache />
-
+  
+	<!-- updateGP : 수정-->
+	<update id="updateGp" parameterType="GpModel">
+		UPDATE GroupPurchase
+		SET numOfCon = #{numOfCon} , price = #{price}
+		WHERE itemId = #{itemId}
+	</update>
+	
+	<!-- deleteGp : 삭제-->
+	<delete id="deleteGp" parameterType="GpModel">
+		DELETE FROM GroupPurchase
+		WHERE itemId = #{itemId}
+	</delete>
+	
+	<!-- cancelGp : 자동 취소-->
+	<!-- 보류 -->
+	
+	<sql id="GpColumns">
+		itemId, gpstatus, deadline, numOfcon, price
+	</sql>
+	
+	<!-- searchGP : 검색-->
+	<select id="searchGp" parameterType="String">
+		SELECT <include refid="GpColumns"/>
+		FROM GroupPurchase
+		JOIN Item on item.itemId = GroupPurchase.itemId
+		WHERE item.name = <!-- name , itemKind로 검색 -->
+	</select>
+	
+	<!-- participateGP : 참가-->
+	<update id="participateGp" parameterType="GpModel">
+		UPDATE GroupPurchase
+		SET currentCon = #{currentCon+1}
+		WHERE itemId = #{itemId}
+	</update>
+	
+	<!-- is_GPJP_exist : jp 존재하는 지 확인-->
+	<select id="is_GPJP_exist" parameterType="GpModel">
+		SELECT currentCon
+		FROM GroupPurchase
+		WHERE itemId = #{itemId}
+	</select>
 </mapper>
