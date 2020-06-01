@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @SessionAttributes("sessionCart")
-public class CartController {
+public class CartController { // hi
 	@Autowired
 	private CartService cartService;	//임의로 이름 지었어요! cart관련 서비스
 	
