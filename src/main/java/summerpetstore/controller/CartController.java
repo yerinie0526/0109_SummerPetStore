@@ -1,7 +1,6 @@
 package summerpetstore.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.samples.service.MemberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,9 +8,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import summerpetstore.model.CartModel;
+import summerstore.service.CartService;
+
+
 @Controller
 @SessionAttributes("sessionCart")
-public class CartController { // hi
+public class CartController {
 	@Autowired
 	private CartService cartService;	//임의로 이름 지었어요! cart관련 서비스
 	
