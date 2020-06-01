@@ -22,4 +22,6 @@ public class ShowDetailController {
 		model.addAttribute("item", item);
 		return "spetitem/sListDetail"; //일바구매물품자세히보기 output view로 보내주기
 	}
+	
+
 }
