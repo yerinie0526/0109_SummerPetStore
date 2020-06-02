@@ -6,13 +6,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import summerpetstore.model.ItemModel;
+import summerpetstore.service.SProductService;
+
 @Controller
 public class ShowDetailController {
+	
 	@Autowired
-	private sproductService sproductService;	//임의로 이름 지었어요! 일반상품 관련 서비스
+	private SProductService sproductService;	//임의로 이름 지었어요! 일반상품 관련 서비스
 	ItemModel item;
 	
-	public void setCartService(sproductService sproductService) {
+	public void setCartService(SProductService sproductService) {
 		this.sproductService = sproductService;
 	}
 	

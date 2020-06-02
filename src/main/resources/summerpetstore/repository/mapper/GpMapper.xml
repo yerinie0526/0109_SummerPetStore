@@ -29,7 +29,14 @@
 		SELECT <include refid="GpColumns"/>
 		FROM GroupPurchase
 		JOIN Item on item.itemId = GroupPurchase.itemId
-		WHERE item.name = <!-- name , itemKind로 검색 -->
+		<where>
+			<if test="itemId != null">
+				AND itemId = #{itemId}
+			</if>
+			<if test="itemKind != null">
+				AND itemId = #{itemKind}
+			</if>
+		</where>
 	</select>
 	
 	<!-- participateGP : 참가-->
