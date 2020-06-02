@@ -2,8 +2,8 @@ package summerpetstore.model;
 
 public class UserModel {
 	
-	private String userId;
-	private String username;
+	private String userId; //ex) yerinie0526
+	private String username; //ex) ÀÌ¿¹¸°
 	private String password;
 	private String email;
 	private String address;

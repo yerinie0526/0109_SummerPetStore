@@ -15,43 +15,28 @@ public class CartService {
 	@Autowired
 	private CartDAO cartdao;
 	
-	// 수정
+	//카트삭제
 	@Transactional
-	public int updateGP(GpModel gp) { // 매개변수 고려 필요
-		return cartdao.updateGp(gp);
+	public int deleteCart(String userId, int itemId) { 
+		return cartdao.deleteCart(userId, itemId);
 	}
 	
-	// 삭제
+	//회원이 탈퇴할때 장바구니가 삭제되는 기능
 	@Transactional
-	public int deleteGP(GpModel gp) { // 매개변수 고려 필요
-		return cartdao.deleteGp(gp.getItemId());
+	public int deleteCartByUser(String userId) { 
+		return cartdao.deleteCartByUser(userId);
 	}
 	
-	// 취소; 기간이 지났는데도, 인원이 차지 않았을 경우, 자동 취소 및 환불
+	//주문하기
 	@Transactional
-	public int cancelGP(GpModel gp) { // 매개변수 고려 필요
-		return cartdao.cancelGp(gp.getItemId());
+	public int order(String userId, int orderId) { // 매개변수 고려 필요
+		return cartdao.order(userId, orderId);
 	}
 	
-	// 검색
+	//카트에 추가
 	@Transactional
-	public List<GpModel> searchGP(GpModel gp) { // 매개변수 고려 필요
-		return gpRepository.searchGp(gp.getItemmodel().getName(), gp.getItemmodel().getItemKind());
+	public int addCart(String userId, int itemId, int price) { // 매개변수 고려 필요
+		return cartdao.addCart(userId, itemId, price);
 	}
 	
-	// 참가
-	@Transactional
-	public int participateGP(GpModel gp) { // 매개변수 고려 필요
-		return gpRepository.participateGp(gp.getItemmodel().getItemId(), gp.getGpjpmodel().getUserName());
-	}
-	
-	@Transactional
-	public boolean is_GPJP_exist(GpModel gp) {
-		return gpRepository.is_GPJP_exist(gp.getItemId());
-	}
-	
-	@Transactional
-	public int cancelGpJPId(int itemId) {
-		return gpRepository.cancelGpJPId(itemId);
-	}
 }

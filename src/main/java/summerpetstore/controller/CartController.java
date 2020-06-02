@@ -29,7 +29,8 @@ public class CartController {
 		if(cartService.containsItemId(itemId))	//장바구니 추가하려는 아이템이 이미 존재하는 경우
 			cart =  cartService.incrementQuantityByItemId(itemId); 	//해당하는 아이템의 수량만 증가시킴
 		else
-			cart = cartService.addCart(itemId); //아닌경우 새로 장바구니에 추가
+			cart = cartService.addCart(userId, itemId); //아닌경우 새로 장바구니에 추가 
+			//수현아 addCart에 매개변수 userId도 있어야해서 일단 하나 더 넣었어!ㅋㅋㅋㅋ
 		
 		model.addAttribute("cart", cart);
 		return "spetitem/sListDetail"; //장바구니 output view로 보내주기

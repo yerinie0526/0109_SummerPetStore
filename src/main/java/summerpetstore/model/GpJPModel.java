@@ -4,6 +4,7 @@ public class GpJPModel {
 	private String itemId;
 	private String userName;
 	private int isEnd;
+	
 	public GpJPModel() {
 		
 	}

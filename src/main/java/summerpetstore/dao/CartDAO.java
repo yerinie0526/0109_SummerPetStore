@@ -27,17 +27,17 @@ public class CartDAO {
 	}
 	
 	
-	//카트삭제
+	//카트삭제 (미완료-변수 때문에)
 	public int deleteCart(String userId, int itemId) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
 			int result = sqlSession.delete(namespace + ".deleteCart", itemId);
-			if(result > 0) { sqlSession.c]ommit(); }
+			if(result > 0) { sqlSession.commit(); }
 			return result;
 		}finally { sqlSession.close(); }
 	}
 	
-	//회원이 탈퇴할때 장바구니가 삭제되는 기능
+	//회원이 탈퇴할때 장바구니가 삭제되는 기능 (완료)
 	public int deleteCartByUser(String userId) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
@@ -48,22 +48,22 @@ public class CartDAO {
 	}
 	
 	
-	//주문하기
-	public int order(int userId, int orderId){
+	//주문하기 
+	public int order(String userId, int orderId){
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			int result = sqlSession.delete(namespace + ".cancelGp", itemId);
+			int result = sqlSession.delete(namespace + ".cancelGp", userId); //변수 여러개 여야 함
 			if(result > 0) { sqlSession.commit(); }
 			return result;
 		}finally { sqlSession.close(); }
 	}
 	
-	//카트에 추가
-	public List<GpModel> addCart(int userId, int itemId, int price) {
+	//카트에 추가 
+	public int addCart(String userId, int itemId, int price) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			List<GpModel> result = sqlSession.selectList(namespace + ".cancelGp", name + itemKind);
-			if(result != null) { sqlSession.commit(); }
+			int result = sqlSession.insert(namespace + ".addCart", userId); //변수 여러개여야 함
+			if(result > 0) { sqlSession.commit(); }
 			return result;
 		}finally { sqlSession.close(); }
 		//return GpMapper.searchGp(name, itemKind);
