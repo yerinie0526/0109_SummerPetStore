@@ -9,7 +9,7 @@ import summerpetstore.dao.GpDAO;
 import summerpetstore.model.GpModel;
 
 public class GpService {
-	
+	// test
 	@Autowired
 	private GpDAO gpRepository;
 	
