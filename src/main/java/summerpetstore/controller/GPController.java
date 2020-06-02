@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import summerpetstore.model.GpModel;
-import summerstore.service.GpService;
+import summerpetstore.service.GpService;
 
 @Controller
 public class GPController {
