@@ -10,6 +10,8 @@ public class GpModel {
 	private int currentCon;
 	private int price;
 	private int sale;
+	private ItemModel itemmodel;
+	private GpJPModel gpjpmodel;
 	private int itemId;
 	
 	
@@ -23,7 +25,23 @@ public class GpModel {
 		this.sale = sale;
 		this.itemId = itemId;
 	}
-	
+
+
+	public GpModel(String gpStatus, Date deadline, int numOfCon, int currentCon, int price, int sale,
+			ItemModel itemmodel, GpJPModel gpjpmodel, int itemId) {
+		super();
+		this.gpStatus = gpStatus;
+		this.deadline = deadline;
+		this.numOfCon = numOfCon;
+		this.currentCon = currentCon;
+		this.price = price;
+		this.sale = sale;
+		this.itemmodel = itemmodel;
+		this.gpjpmodel = gpjpmodel;
+		this.itemId = itemId;
+	}
+
+
 	public GpModel() {
 		
 	}
@@ -37,6 +55,24 @@ public class GpModel {
 		this.itemId = itemId;
 	}
 	
+	public GpJPModel getGpjpmodel() {
+		return gpjpmodel;
+	}
+
+
+	public void setGpjpmodel(GpJPModel gpjpmodel) {
+		this.gpjpmodel = gpjpmodel;
+	}
+
+
+	public ItemModel getItemmodel() {
+		return itemmodel;
+	}
+
+	public void setItemmodel(ItemModel itemmodel) {
+		this.itemmodel = itemmodel;
+	}
+
 	public String getGpStatus() {
 		return gpStatus;
 	}

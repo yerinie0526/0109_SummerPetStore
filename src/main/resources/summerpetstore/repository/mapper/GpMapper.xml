@@ -12,7 +12,7 @@
 	</update>
 	
 	<!-- deleteGp : 삭제-->
-	<delete id="deleteGp" parameterType="GpModel">
+	<delete id="deleteGp" parameterType="int">
 		DELETE FROM GroupPurchase
 		WHERE itemId = #{itemId}
 	</delete>
@@ -45,4 +45,10 @@
 		FROM GroupPurchase
 		WHERE itemId = #{itemId}
 	</select>
+	
+	<!-- cancelGPJPId -->
+	<delete id="cancelGpJPId" parameterType="int">
+		DELETE FROM GPJP
+		WHERE itemId = #{itemId}
+	</delete>
 </mapper>

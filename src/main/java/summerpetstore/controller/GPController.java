@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import summerpetstore.model.GpModel;
 import summerstore.service.GpService;
 
 @Controller
@@ -20,9 +21,10 @@ public class GPController {
 	}
 	
 	@RequestMapping("spetitem/gpdelete") //gpdelete호출 
-	public String deleteGp(@RequestParam("itemId") String itemId, Model model) {
-		if(gpService.is_GPJP_exist())
-			gp = gpService.cancelGPJPId(itemId);	//itemid 줘야할거같아서 추가했어요!
+	public String deleteGp(@RequestParam("itemId") int itemId, Model model) {
+		if(gpService.is_GPJP_exist(gp))
+			//gp = gpService.cancelGpJPId(itemId);	//itemid 줘야할거같아서 추가했어요!
+			// cancelGpJPId(itemId) -> int형으로 반환됨
 		
 		model.addAttribute("gp", gp);
 		return "spetitem/categoryView"; //공동구매 output view로 보내주기
