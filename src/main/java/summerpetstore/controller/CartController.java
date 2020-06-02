@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import summerpetstore.model.CartModel;
-import summerstore.service.CartService;
+import summerpetstore.service.CartService;
 
 
 @Controller
