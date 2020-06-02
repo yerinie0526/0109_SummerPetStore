@@ -51,10 +51,10 @@ public class GpDAO {
 	
 	
 	//공동구매 참가
-	public int participateGp(int itemId, String userName) {
+	public int participateGp(int itemId, String userId) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			int result = sqlSession.selectOne(namespace + ".cancelGp", itemId + userName);
+			int result = sqlSession.selectOne(namespace + ".cancelGp", itemId + userId);
 			if(result > 0) { sqlSession.commit(); }
 			return result;
 		}finally { sqlSession.close(); }

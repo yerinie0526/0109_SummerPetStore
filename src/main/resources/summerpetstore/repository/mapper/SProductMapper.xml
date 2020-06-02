@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="summerpetstore.repository.mapper.SProductMapper">
+<cache/>
+	<sql id="SpColumns">
+		itemId, productId, name, description, price
+	</sql>
+	<select id="showInfoSP">
+		SELECT <include refid="SpColumns"/>
+		FROM Item
+		WHERE itemId = #{itemId}
+	</select>
+	
+	<insert id="registerSP" parameterType="ItemModel">
+	 	INSERT INTO ITEM(itemId, istatus, itemKind, name, price, description, isGP)
+			VALUES (#{itemId}, #{istatus}, #{itemKind}, #{name}, #{price}, #{description}, 0);
+	</insert>
+	<!-- istatus select-form으로  view에 추가 요망-->
+	
+	<delete id="deleteSP" parameterType="ItemModel">
+		DELETE FROM Item
+		WHERE itemId = #{itemId}
+	</delete>
+	
+	<update id="updateSP" parameterType="ItemModel">
+		UPDATE Item
+		SET itemId = #{itemId}, istatus = #{istatus}, itemKind = #{itemKind}, name = #{name}
+		, price = #{price}, description = #{description}, isGP = #{isGP}
+		WHERE itemId = #{itemId}
+	</update>
+</mapper>   

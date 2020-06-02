@@ -31,10 +31,10 @@
 		JOIN Item on item.itemId = GroupPurchase.itemId
 		<where>
 			<if test="itemId != null">
-				AND itemId = #{itemId}
+				AND item.itemId = #{itemId}
 			</if>
 			<if test="itemKind != null">
-				AND itemId = #{itemKind}
+				AND item.itemKind = #{itemKind}
 			</if>
 		</where>
 	</select>

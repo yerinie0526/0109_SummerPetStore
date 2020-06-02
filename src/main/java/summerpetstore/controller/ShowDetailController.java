@@ -21,7 +21,7 @@ public class ShowDetailController {
 	}
 	
 	@RequestMapping("/spetitem/detail")	//detail호출
-	public String showSpetitem(@RequestParam("itemId") String itemId, Model model) {
+	public String showSpetitem(@RequestParam("itemId") int itemId, Model model) {
 		item = sproductService.showInfo(itemId);
 		model.addAttribute("item", item);
 		return "spetitem/sListDetail"; //일바구매물품자세히보기 output view로 보내주기
