@@ -9,7 +9,8 @@ import summerpetstore.dao.GpDAO;
 import summerpetstore.model.GpModel;
 
 public class GpService {
-	// test, test, test
+	// test, test, test, test, test
+	
 	@Autowired
 	private GpDAO gpRepository;
 	
@@ -43,10 +44,12 @@ public class GpService {
 		return gpRepository.participateGp(gp.getItemmodel().getItemId(), gp.getGpjpmodel().getUserName());
 	}
 	
+	@Transactional
 	public boolean is_GPJP_exist(GpModel gp) {
 		return gpRepository.is_GPJP_exist(gp.getItemId());
 	}
 	
+	@Transactional
 	public int cancelGpJPId(int itemId) {
 		return gpRepository.cancelGpJPId(itemId);
 	}

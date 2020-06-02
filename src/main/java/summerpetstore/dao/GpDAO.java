@@ -8,10 +8,11 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.springframework.stereotype.Repository;
 
 import summerpetstore.model.GpModel;
 
-
+@Repository
 public class GpDAO {
 
 	private String namespace = "summerpetstore.repository.mapper.GpMapper";
