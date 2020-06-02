@@ -4,49 +4,53 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
-import org.w3c.dom.Comment;
 
 import summerpetstore.dao.GpDAO;
-//import summerpetstore.repository.mapper.GPMapperRepository;
 import summerpetstore.model.GpModel;
 
 public class GpService {
+	// test, test, test, test, test, test
 	
 	@Autowired
-	private GpDAO gpdao;
+	private GpDAO gpRepository;
 	
 	// 수정
 	@Transactional
 	public int updateGP(GpModel gp) { // 매개변수 고려 필요
-		return gpdao.updateGp(gp);
+		return gpRepository.updateGp(gp);
 	}
 	
 	// 삭제
 	@Transactional
-	public int deleteGp(int itemId) { // 매개변수 고려 필요
-		return gpdao.deleteGp(itemId);
+	public int deleteGP(GpModel gp) { // 매개변수 고려 필요
+		return gpRepository.deleteGp(gp.getItemId());
 	}
 	
 	// 취소; 기간이 지났는데도, 인원이 차지 않았을 경우, 자동 취소 및 환불
 	@Transactional
-	public void gpcancelGp(GpModel gp) { // 매개변수 고려 필요
-		return gpdao.cancelGp(gp);
+	public int cancelGP(GpModel gp) { // 매개변수 고려 필요
+		return gpRepository.cancelGp(gp.getItemId());
 	}
 	
 	// 검색
 	@Transactional
-	public List<GpModel> searchGp(GpModel gp) { // 매개변수 고려 필요
-		return gpdao.searchGp(gp.getName(), gp.getItemKind());
+	public List<GpModel> searchGP(GpModel gp) { // 매개변수 고려 필요
+		return gpRepository.searchGp(gp.getItemmodel().getName(), gp.getItemmodel().getItemKind());
 	}
 	
 	// 참가
 	@Transactional
-	public void participateGp(GpModel gp) { // 매개변수 고려 필요
-		return gpdao.participateGp(gp);
+	public int participateGP(GpModel gp) { // 매개변수 고려 필요
+		return gpRepository.participateGp(gp.getItemmodel().getItemId(), gp.getGpjpmodel().getUserName());
 	}
 	
-	public boolean is_GPJP_exist(GpModel gp) {	
-		return 
+	@Transactional
+	public boolean is_GPJP_exist(GpModel gp) {
+		return gpRepository.is_GPJP_exist(gp.getItemId());
+	}
+	
+	@Transactional
+	public int cancelGpJPId(int itemId) {
+		return gpRepository.cancelGpJPId(itemId);
 	}
 }
