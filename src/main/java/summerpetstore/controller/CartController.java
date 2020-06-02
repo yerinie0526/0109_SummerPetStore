@@ -23,7 +23,7 @@ public class CartController {
 	}
 	
 	@RequestMapping("spetitem/addCart") //addCart호출 
-	public String addCart(@RequestParam("itemId") String itemId, Model model) {
+	public String addCart(@RequestParam("itemId") int itemId, Model model) {
 		CartModel cart;	//cart model이 들어가야할거같아서 일단 이렇게 추가했어요..
 		
 		if(cartService.containsItemId(itemId))	//장바구니 추가하려는 아이템이 이미 존재하는 경우

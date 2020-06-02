@@ -23,10 +23,10 @@ public class GPController {
 	@RequestMapping("spetitem/gpdelete") //gpdelete호출 
 	public String deleteGp(@RequestParam("itemId") int itemId, Model model) {
 		if(gpService.is_GPJP_exist(gp))
-			//gp = gpService.cancelGpJPId(itemId);	//itemid 줘야할거같아서 추가했어요!
-			// cancelGpJPId(itemId) -> int형으로 반환됨
+			model.addAttribute("deleteok", 0);	//삭제불가
+		else
+			model.addAttribute("deleteok", 1);	//삭제가능
 		
-		model.addAttribute("gp", gp);
 		return "spetitem/categoryView"; //공동구매 output view로 보내주기
 		
 	}
