@@ -40,4 +40,17 @@ public class CartService {
 		
 	}
 	
+	//장바구니에 이미 그 물건이 있는지 확인
+	@Transactional
+	public boolean containsItemId(int itemId, String userId) {
+		if(cartdao.getItemCount(itemId, userId) > 0) {
+			return true;
+		}
+		return false;
+	}
+	
+	@Transactional
+	public void incrementQuantityByItemId(int itemId, String userId) {
+		cartdao.incrementQuantityByItemId(itemId, userId);
+	}
 }

@@ -69,4 +69,22 @@ public class CartDAO {
 		//return GpMapper.searchGp(name, itemKind);
 	}
 	
+	
+	//해당아이디에 해당 itemId가 몇개있는지 확인
+	public int getItemCount(int itemId, String userId) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			int result = sqlSession.selectOne(namespace + ".containsItemId", userId); //변수 여러개여야 함
+			return result;
+		}finally { sqlSession.close(); }
+	}
+	
+	//quantity + 1
+	public void incrementQuantityByItemId(int itemId, String userId) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			sqlSession.update(namespace + ".incrementQuantityByItemId", userId); //변수 여러개여야 함
+		}finally { sqlSession.close(); }
+	}
+	
 }

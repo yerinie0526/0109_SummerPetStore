@@ -101,6 +101,6 @@ public class GpDAO {
 			return result;
 		}finally { sqlSession.close(); }
 	}
-			
+	
 	
 }

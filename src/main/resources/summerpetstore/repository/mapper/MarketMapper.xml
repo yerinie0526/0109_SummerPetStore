@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="summerpetstore.repository.mapper.MartketMapper">   
+  <cache />
+  
+	<!--장터에 물품 등록하기-->
+	<insert id="registerItem" >
+		INSERT INTO item
+		VALUES (#{itemId}, "거래중", #{itemKind}, #{iname}, #{price}, #{description}, #{isGp}, #{productId}, #{sellerInfo})
+	</insert>
+	
+	<!--장터 물품 자세히 보기-->
+	<select id="showInfo" resultType="ItemModel">
+		SELECT itemId, iname, price, description, productId, itemKind
+		FROM item
+		WHERE itemId = #{itemId}
+	</select>
+	
+	<!--장터 물품 삭제-->
+	<delete id="deleteItem">
+		DELETE FROM item
+		WHERE = itemId = #{itemId}
+	</delete>
+	
+	<!--장터물품 수정 -->
+	<update id="updateItem" >
+		UPDATE Item
+		SET itemKind=#{itemKind}, iname=#{iname}, price=#{price}, description=#{description}, productId=#{productId}
+		WHERE itemId=#{itemId}
+	</update>
+	
+	<!--장터상태 수정-->
+	<update id="updateItemStatus" >
+		UPDATE Item
+		SET istatus=#{istatus}
+		WHERE itemId=#{itemId}
+	</update>
+	
+	<!--장터검색-->
+	<select id="searchItem" resultType="ItemModel">
+		SELECT itemId, iname, price
+		FROM Item
+		WHERE productId=#{productId}, itemKind=#{itemKind} 
+	</select>
+
+	
+
+</mapper>

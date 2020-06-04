@@ -5,29 +5,44 @@
   <cache />
   
 	<!-- deleteCart : 물건삭제-->
-	<delete id="deleteCart" parameterType="">
+	<delete id="deleteCart" >
 		DELETE FROM Cart
 		WHERE itemId = #{itemId} and userId = #{userId}
 	</delete>
 	
 	<!-- deleteCartByUser : 사용자가 탈퇴할때, 혹은 모두삭제 기능-->
-	<delete id="deleteCartByUser" parameterType="int">
+	<delete id="deleteCartByUser">
 		DELETE FROM Cart
 		WHERE userId = #{userId}
 	</delete>
 	
 	<!--addCart : 카트에 추가-->
-	<insert id="addcart" parameterType="GpModel">
+	<insert id="addcart">
 		INSERT INTO Cart
 		VALUES (#{itemId}, #{itemName}, #{price}, #{inStock}, #{quantity}, #{userId})
 	</insert>
 	
 	<!--order : 주문-->
-	<insert id="order" parameterType="GpModel">
+	<insert id="order" >
 		INSERT INTO OrderItem
 		VALUES (#{itemName}, #{itemId}, #{quantity}, #{orderId})
 	</insert>
+	
+	<!--해당 아이디에 해당 아이템이 몇개인지-->
+	<select id="countItemId" resultType="int" >
+		SELECT COUNT(#{itemId}) 
+		FROM Cart
+		WHERE userId = #{userId}
+	</select>
 
+	<!--아이템 수량 + 1-->
+	<update id="incrementquantity">
+		UPDATE cart
+		SET quantity = quantity + 1
+		WHERE itemId = #{itemId} and userId = #{userId}
+	</update>
+	
+	<!--아아템 수량 수정하는 것도 만들어야할것같음 -->
 	
 
 </mapper>

@@ -46,6 +46,14 @@
 		WHERE itemId = #{itemId}
 	</update>
 	
+	
+	<!--addCompleteOrder : 주문완료테이블에 추가-->
+	<insert id="addCompleteOrder">
+		INSERT INTO CompleteOrder
+		
+	</insert>
+	
+	
 	<!-- is_GPJP_exist : jp 존재하는 지 확인-->
 	<select id="is_GPJP_exist" parameterType="GpModel">
 		SELECT currentCon
