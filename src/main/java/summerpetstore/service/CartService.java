@@ -35,8 +35,9 @@ public class CartService {
 	
 	//카트에 추가
 	@Transactional
-	public int addCart(String userId, int itemId, int price) { // 매개변수 고려 필요
-		return cartdao.addCart(userId, itemId, price);
+	public void addCart(String userId, int itemId, int price) { // 매개변수 고려 필요
+		
+		
 	}
 	
 }

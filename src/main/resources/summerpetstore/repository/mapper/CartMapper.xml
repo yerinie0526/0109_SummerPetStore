@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="summerpetstore.repository.mapper.CartMapper">   
+  <cache />
+  
+	<!-- deleteCart : 물건삭제-->
+	<delete id="deleteCart" parameterType="">
+		DELETE FROM Cart
+		WHERE itemId = #{itemId} and userId = #{userId}
+	</delete>
+	
+	<!-- deleteCartByUser : 사용자가 탈퇴할때, 혹은 모두삭제 기능-->
+	<delete id="deleteCartByUser" parameterType="int">
+		DELETE FROM Cart
+		WHERE userId = #{userId}
+	</delete>
+	
+	<!--addCart : 카트에 추가-->
+	<insert id="addcart" parameterType="GpModel">
+		INSERT INTO Cart
+		VALUES (#{itemId}, #{itemName}, #{price}, #{inStock}, #{quantity}, #{userId})
+	</insert>
+	
+	<!--order : 주문-->
+	<insert id="order" parameterType="GpModel">
+		INSERT INTO OrderItem
+		VALUES (#{itemName}, #{itemId}, #{quantity}, #{orderId})
+	</insert>
+
+	
+
+</mapper>
