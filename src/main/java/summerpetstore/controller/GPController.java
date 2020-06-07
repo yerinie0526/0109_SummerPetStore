@@ -29,5 +29,16 @@ public class GPController {
 		
 		return "spetitem/categoryView"; //공동구매 output view로 보내주기
 		
-	}
+	}//공동구매삭제
+	
+	@RequestMapping("market") // 
+	public String deleteMgp(@RequestParam("itemId") int itemId, Model model) {
+		if(gpService.is_GPJP_exist(gp))
+			model.addAttribute("deleteok", 0);	//삭제불가
+		else
+			model.addAttribute("deleteok", 1);	//삭제가능
+		
+		return "market/mListDetail"; 
+		
+	}//장터공동구매삭제--이거 함수이름 위에 공동구매삭제랑 겹치게 처리흐름표에 적혀있어서 일단 흐름표는 안고치고 이름은 이렇게 지었어요
 }

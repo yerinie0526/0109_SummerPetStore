@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import summerstore.service.GpService;
+import summerpetstore.service.GpService;
 
 @Controller
 public class UserController {
@@ -56,4 +56,17 @@ public class UserController {
 		
 		return "main";
 	}	//회원탈퇴
+	
+	
+	@RequestMapping("login") //register호출 
+	public String login(@RequestParam("username") String username, @RequestParam("password") String password) {
+		
+		return "main";
+	}//로그인
+	
+	@RequestMapping("mypage/update") //register호출 
+	public String updateUser(@RequestParam("userId") String userId) {
+		userService.updateMyPage(userId);
+		return "user/myPage";
+	}//회원정보수정
 }
