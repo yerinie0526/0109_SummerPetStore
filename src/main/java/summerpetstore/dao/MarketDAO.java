@@ -2,13 +2,13 @@ package summerpetstore.dao;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import summerpetstore.model.GpModel;
 import summerpetstore.model.ItemModel;
 
 public class MarketDAO {
@@ -24,6 +24,15 @@ public class MarketDAO {
 			throw new IllegalArgumentException(e);
 		}
 		return new SqlSessionFactoryBuilder().build(inputStream);
+	}
+	
+	//장터물품 등록
+	public void registerItem(ItemModel im) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			int result = sqlSession.insert(namespace + ".showInfo", im);
+			if(result > 0) { sqlSession.commit(); }
+		}finally { sqlSession.close(); }
 	}
 	
 	//장터물품 자세히 보기
@@ -66,11 +75,11 @@ public class MarketDAO {
 	}
 	
 	//장터 검색
-	public void searchItem() {
+	public List<ItemModel> searchItem(String itemname, String itemKind) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			int result = sqlSession.update(namespace + ".updateItemStatus", itemId);
-			if(result > 0) { sqlSession.commit(); }
+			List<ItemModel> result = sqlSession.selectList(namespace + ".searchMarket", itemname);
+			return result;
 		}finally { sqlSession.close(); }
 	}
 

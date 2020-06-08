@@ -1,32 +1,55 @@
 package summerpetstore.service;
 
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import summerpetstore.dao.MarketDAO;
-import summerpetstore.model.GpModel;
+import summerpetstore.model.ItemModel;
+
 
 public class MarketService {
 	
 	@Autowired
 	private MarketDAO mdao;
 	
-	// 수정
+	//장터에 물품 등록하기
 	@Transactional
-	public int updateGP(GpModel gp) { // 매개변수 고려 필요
-		return mdao.updateGp(gp);
+	public void registerItem(ItemModel im) { // 매개변수 고려 필요
+		mdao.registerItem(im);
 	}
 	
-	// 삭제
+	//장터물품 자세히 보기
 	@Transactional
-	public int deleteGP(GpModel gp) { // 매개변수 고려 필요
-		return mdao.deleteGp(gp.getItemId());
+	public ItemModel showInfo(ItemModel im) { // 매개변수 고려 필요
+		return mdao.showInfo(im.getItemId());
 	}
 	
-	// 취소; 기간이 지났는데도, 인원이 차지 않았을 경우, 자동 취소 및 환불
+	//장터물품 삭제
 	@Transactional
-	public int cancelGP(GpModel gp) { // 매개변수 고려 필요
-		return gpRepository.cancelGp(gp.getItemId());
+	public void deleteItem(int itemId) { // 매개변수 고려 필요
+		mdao.deleteItem(itemId);
+	}
+	
+	//장터물품 수정
+	@Transactional
+	public void updateItem(ItemModel im) { // 매개변수 고려 필요
+		mdao.updateItem(im);
+	}
+	
+	
+	//장터상태 수정 ex) 거래중 -> 거래 완료
+	public void updateItemStatus(int itemId) {
+		mdao.updateItemStatus(itemId);
+	}
+		
+	//장터 검색
+	public List<ItemModel> searchItem(String itemname, String itemKind) {
+		List<ItemModel> imList;
+		imList = mdao.searchItem(itemname, itemKind);
+		return imList;
 	}
 
 }
