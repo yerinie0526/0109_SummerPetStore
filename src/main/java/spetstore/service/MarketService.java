@@ -1,4 +1,4 @@
-package summerpetstore.service;
+package spetstore.service;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import summerpetstore.dao.MarketDAO;
-import summerpetstore.model.ItemModel;
+import spetstore.dao.MarketDAO;
+import spetstore.model.ItemModel;
 
 
 public class MarketService {
