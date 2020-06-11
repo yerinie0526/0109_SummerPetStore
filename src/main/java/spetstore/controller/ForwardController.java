@@ -1,10 +1,10 @@
-package summerpetstore.controller;
+package spetstore.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import summerpetstore.service.GpService;
+import spetstore.service.GpService;
 
 @Controller
 public class ForwardController {
@@ -15,21 +15,21 @@ public class ForwardController {
 		this.forwardService = forwardService;
 	}
 	
-	@RequestMapping("mypage") //mypageÈ£Ãâ 
+	@RequestMapping("mypage") //mypageÈ£ï¿½ï¿½ 
 	public String showMyPage(@RequestParam("userId") String userId) {
 		if(forwardService.is_admin())
-			return "user/summerPage"; //¿î¿µÀÚ
+			return "user/summerPage"; //ï¿½î¿µï¿½ï¿½
 		else
-			return"user/myPage"; //»ç¿ëÀÚ
-	}//¸¶ÀÌÆäÀÌÁö·Î ÀÌµ¿ (»ç¿ëÀÚ/¿î¿µÀÚ)
+			return"user/myPage"; //ï¿½ï¿½ï¿½ï¿½ï¿½
+	}//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½î¿µï¿½ï¿½)
 	
-	@RequestMapping("market") //marketÈ£Ãâ 
+	@RequestMapping("market") //marketÈ£ï¿½ï¿½ 
 	public String moveMarketSearch() {
 			return"market/mSearch"; 
-	}//ÀåÅÍ°Ë»öÀ¸·Î ÀÌµ¿ 
+	}//ï¿½ï¿½ï¿½Í°Ë»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ 
 	
 	@RequestMapping("market/register") 
 	public String moveMarketRegister(@RequestParam("userId") String userId) {
 			return"market/iRegister"; 
-	}//¹°Ç°µî·ÏÃ¢À¸·Î ÀÌµ¿ 
+	}//ï¿½ï¿½Ç°ï¿½ï¿½ï¿½Ã¢ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ 
 }

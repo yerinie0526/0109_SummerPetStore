@@ -1,4 +1,4 @@
-package summerpetstore.controller;
+package spetstore.controller;
 
 import javax.servlet.http.HttpSession;
 
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import summerpetstore.service.CartService;
+import spetstore.service.CartService;
 
 @Controller
 public class MarketController {
@@ -25,19 +25,19 @@ public class MarketController {
 		marketService.registerItem(userId, marketId);
 		return "market/mSearach"; 
 		
-	}//ÀåÅÍ¹°Ç°µî·Ï
+	}//ï¿½ï¿½ï¿½Í¹ï¿½Ç°ï¿½ï¿½ï¿½
 	
 	@RequestMapping("market/delete") 
 	public String deleteMarket(@RequestParam("marketId") int marketId) {
 		marketService.deleteItem(marketId);
 		return "market/mSearach"; 
 		
-	}//ÀåÅÍ¹°Ç°»èÁ¦
+	}//ï¿½ï¿½ï¿½Í¹ï¿½Ç°ï¿½ï¿½ï¿½ï¿½
 	
 	@RequestMapping("market/mitemView") 
 	public String updateMarket(@RequestParam("userId") String userId) {
 		marketService.updateItem(userId);
 		return "market/mListDetail"; 
 		
-	}//ÀåÅÍ¹°Ç°¼öÁ¤
+	}//ï¿½ï¿½ï¿½Í¹ï¿½Ç°ï¿½ï¿½ï¿½ï¿½
 }

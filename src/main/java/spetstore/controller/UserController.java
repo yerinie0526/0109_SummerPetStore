@@ -1,4 +1,4 @@
-package summerpetstore.controller;
+package spetstore.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -6,8 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import summerpetstore.service.GpService;
-import summerpetstore.service.MarketService;
+import spetstore.service.GpService;
+import spetstore.service.MarketService;
 
 @Controller
 public class UserController {
@@ -38,36 +38,36 @@ public class UserController {
 	}
 	
 	
-	@RequestMapping("register") //registerÈ£Ãâ 
+	@RequestMapping("register") //registerÈ£ï¿½ï¿½ 
 	public String registerUser(@RequestParam("userId") String userId, Model model) {
-		String name = userService.registerUser(userId); 	//È¸¿øµî·Ï ÇÔ¼ö return °ªÀ» usernameÀ¸·Î! 
+		String name = userService.registerUser(userId); 	//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ return ï¿½ï¿½ï¿½ï¿½ usernameï¿½ï¿½ï¿½ï¿½! 
 		model.addAttribute("username", name);
 		return "sucRegist";
-	}//È¸¿øµî·Ï
+	}//È¸ï¿½ï¿½ï¿½ï¿½ï¿½
 	
 	@RequestMapping("main") 
 	public String deleteUser(@RequestParam("userId") String userId, Model model) {
 		if(auctionService.is_auction_exist()){
-			auctionService.cancelSBId(userId);		//°æ¸Å¿¡ Âü¿©ÇÑ °æ¿ì ÇØ´çÇÏ´Â »ç¿ëÀÚ¸¦ ¾ø¾Ö°í µî¼ö Á¶Á¤
+			auctionService.cancelSBId(userId);		//ï¿½ï¿½Å¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		}else if(marketService.is_market_exist()) {
-			marketService.deleteMarket(userId);		//µî·ÏÇÑ ÀÏ¹Ý±¸¸Å°¡ ÀÖ´Â °æ¿ì ÇØ´ç
+			marketService.deleteMarket(userId);		//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¹Ý±ï¿½ï¿½Å°ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½
 		}else if(gpService.is_gp_exist()){
 			gpService.deleteGP(userId);
 		}
 		
 		return "main";
-	}	//È¸¿øÅ»Åð
+	}	//È¸ï¿½ï¿½Å»ï¿½ï¿½
 	
 	
-	@RequestMapping("login") //registerÈ£Ãâ 
+	@RequestMapping("login") //registerÈ£ï¿½ï¿½ 
 	public String login(@RequestParam("username") String username, @RequestParam("password") String password) {
 		
 		return "main";
-	}//·Î±×ÀÎ
+	}//ï¿½Î±ï¿½ï¿½ï¿½
 	
-	@RequestMapping("mypage/update") //registerÈ£Ãâ 
+	@RequestMapping("mypage/update") //registerÈ£ï¿½ï¿½ 
 	public String updateUser(@RequestParam("userId") String userId) {
 		userService.updateMyPage(userId);
 		return "user/myPage";
-	}//È¸¿øÁ¤º¸¼öÁ¤
+	}//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 }

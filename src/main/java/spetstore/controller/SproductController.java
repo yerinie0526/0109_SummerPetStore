@@ -1,4 +1,4 @@
-package summerpetstore.controller;
+package spetstore.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -6,37 +6,37 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import summerpetstore.model.ItemModel;
-import summerpetstore.service.SProductService;
+import spetstore.model.ItemModel;
+import spetstore.service.SProductService;
 
 @Controller
 public class SproductController {
 	@Autowired
-	private SProductService sproductService;	//ÀÓÀÇ·Î ÀÌ¸§ Áö¾ú¾î¿ä! ÀÏ¹Ý»óÇ° °ü·Ã ¼­ºñ½º
+	private SProductService sproductService;	//ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½! ï¿½Ï¹Ý»ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	private ItemModel sp;
 	
 	public void setCartService(SProductService sproductService) {
 		this.sproductService = sproductService;
 	}
 
-	@RequestMapping("spetitem/register") //registerÈ£Ãâ 
+	@RequestMapping("spetitem/register") //registerÈ£ï¿½ï¿½ 
 	public String registeritem(@RequestParam("itemId") int itemId, Model model) {
 		sp = sproductService.registerSP(itemId);
 		model.addAttribute("sp", sp);
-		return "spetitem/categoryView"; //¹°Ç°µî·Ï output view·Î º¸³»ÁÖ±â
+		return "spetitem/categoryView"; //ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ output viewï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
 	}
 	
-	@RequestMapping("spetitem/delete") //deleteÈ£Ãâ 
+	@RequestMapping("spetitem/delete") //deleteÈ£ï¿½ï¿½ 
 	public String deleteitem(@RequestParam("itemId") int itemId, Model model) {
 		sp = sproductService.deleteSP(itemId);
 		model.addAttribute("sp", sp);
-		return "spetitem/categoryView"; //¹°Ç°»èÁ¦ output view·Î º¸³»ÁÖ±â
+		return "spetitem/categoryView"; //ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ output viewï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
 	}
 	
-	@RequestMapping("spetitem/update") //updateÈ£Ãâ 
+	@RequestMapping("spetitem/update") //updateÈ£ï¿½ï¿½ 
 	public String updateitem(@RequestParam("itemId") int itemId, Model model) {
 		sp = sproductService.updateSP(itemId);
 		model.addAttribute("sp", sp);
-		return "spetitem/sListDetail"; //¹°Ç°¼öÁ¤ output view·Î º¸³»ÁÖ±â
+		return "spetitem/sListDetail"; //ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ output viewï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
 	}
 }

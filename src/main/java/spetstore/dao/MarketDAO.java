@@ -1,4 +1,4 @@
-package summerpetstore.dao;
+package spetstore.dao;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,7 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import summerpetstore.model.ItemModel;
+import spetstore.model.ItemModel;
 
 public class MarketDAO {
 	
@@ -26,7 +26,7 @@ public class MarketDAO {
 		return new SqlSessionFactoryBuilder().build(inputStream);
 	}
 	
-	//ÀåÅÍ¹°Ç° µî·Ï
+	//ï¿½ï¿½ï¿½Í¹ï¿½Ç° ï¿½ï¿½ï¿½
 	public void registerItem(ItemModel im) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
@@ -35,7 +35,7 @@ public class MarketDAO {
 		}finally { sqlSession.close(); }
 	}
 	
-	//ÀåÅÍ¹°Ç° ÀÚ¼¼È÷ º¸±â
+	//ï¿½ï¿½ï¿½Í¹ï¿½Ç° ï¿½Ú¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public ItemModel showInfo(int itemId) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
@@ -45,7 +45,7 @@ public class MarketDAO {
 	}
 	
 	
-	//ÀåÅÍ ¹°Ç° »èÁ¦
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½
 	public void deleteItem(int itemId) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
@@ -55,7 +55,7 @@ public class MarketDAO {
 	}
 	
 	
-	//ÀåÅÍ¹°Ç° ¼öÁ¤
+	//ï¿½ï¿½ï¿½Í¹ï¿½Ç° ï¿½ï¿½ï¿½ï¿½
 	public void updateItem(ItemModel im) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
@@ -65,7 +65,7 @@ public class MarketDAO {
 	}
 	
 	
-	//ÀåÅÍ»óÅÂ ¼öÁ¤ ex) °Å·¡Áß -> °Å·¡ ¿Ï·á
+	//ï¿½ï¿½ï¿½Í»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ex) ï¿½Å·ï¿½ï¿½ï¿½ -> ï¿½Å·ï¿½ ï¿½Ï·ï¿½
 	public void updateItemStatus(int itemId) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
@@ -74,7 +74,7 @@ public class MarketDAO {
 		}finally { sqlSession.close(); }
 	}
 	
-	//ÀåÅÍ °Ë»ö
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
 	public List<ItemModel> searchItem(String itemname, String itemKind) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {

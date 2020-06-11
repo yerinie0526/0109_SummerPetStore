@@ -1,4 +1,4 @@
-package summerpetstore.controller;
+package spetstore.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -6,25 +6,25 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import summerpetstore.model.ItemModel;
-import summerpetstore.service.SProductService;
+import spetstore.model.ItemModel;
+import spetstore.service.SProductService;
 
 @Controller
 public class ShowDetailController {
 	
 	@Autowired
-	private SProductService sproductService;	//ÀÓÀÇ·Î ÀÌ¸§ Áö¾ú¾î¿ä! ÀÏ¹Ý»óÇ° °ü·Ã ¼­ºñ½º
+	private SProductService sproductService;	//ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½! ï¿½Ï¹Ý»ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	ItemModel item;
 	
 	public void setCartService(SProductService sproductService) {
 		this.sproductService = sproductService;
 	}
 	
-	@RequestMapping("/spetitem/detail")	//detailÈ£Ãâ
+	@RequestMapping("/spetitem/detail")	//detailÈ£ï¿½ï¿½
 	public String showSpetitem(@RequestParam("itemId") int itemId, Model model) {
 		item = sproductService.showInfo(itemId);
 		model.addAttribute("item", item);
-		return "spetitem/sListDetail"; //ÀÏ¹Ù±¸¸Å¹°Ç°ÀÚ¼¼È÷º¸±â output view·Î º¸³»ÁÖ±â
+		return "spetitem/sListDetail"; //ï¿½Ï¹Ù±ï¿½ï¿½Å¹ï¿½Ç°ï¿½Ú¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ output viewï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
 	}
 	
 

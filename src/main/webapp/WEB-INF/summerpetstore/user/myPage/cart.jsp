@@ -1,6 +1,6 @@
 <!-- Cart.jsp -->
 
-<%@ include file="IncludeTop.jsp"%>
+<%@ include file="../../IncludeTop.jsp"%>
 
 <script>
    $(document).ready(function() {

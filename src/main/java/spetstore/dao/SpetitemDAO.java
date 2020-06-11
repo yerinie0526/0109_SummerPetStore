@@ -1,4 +1,4 @@
-package summerpetstore.dao;
+package spetstore.dao;
 
 public class SpetitemDAO {
 

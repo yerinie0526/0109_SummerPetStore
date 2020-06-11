@@ -1,4 +1,4 @@
-package summerpetstore.dao;
+package spetstore.dao;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,14 +8,12 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.springframework.stereotype.Repository;
 
-import summerpetstore.model.GpModel;
+import spetstore.model.GpModel;
 
-@Repository
-public class GpDAO {
-
-	private String namespace = "summerpetstore.repository.mapper.GpMapper";
+public class CartDAO {
+	
+	private String namespace = "summerpetstore.repository.mapper.CartMapper";
 	private SqlSessionFactory sqlSessionFactory = createSqlSessionFactory();
 	private SqlSessionFactory createSqlSessionFactory() {
 		String resource = "mybatis-config.xml";
@@ -28,79 +26,65 @@ public class GpDAO {
 		return new SqlSessionFactoryBuilder().build(inputStream);
 	}
 	
-	//°øµ¿±¸¸Å ¼öÁ¤
-	public int updateGp(GpModel gp) {
+	
+	//Ä«Æ®ï¿½ï¿½ï¿½ï¿½ (ï¿½Ì¿Ï·ï¿½-ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+	public int deleteCart(String userId, int itemId) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			int result = sqlSession.update(namespace + ".updateGp", gp);
+			int result = sqlSession.delete(namespace + ".deleteCart", itemId);
+			if(result > 0) { sqlSession.commit(); }
+			return result;
+		}finally { sqlSession.close(); }
+	}
+	
+	//È¸ï¿½ï¿½ï¿½ï¿½ Å»ï¿½ï¿½ï¿½Ò¶ï¿½ ï¿½ï¿½Ù±ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ (ï¿½Ï·ï¿½)
+	public int deleteCartByUser(String userId) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			int result = sqlSession.delete(namespace + ".deleteCartByUser",userId);
 			if(result > 0) { sqlSession.commit(); }
 			return result;
 		}finally { sqlSession.close(); }
 	}
 	
 	
-	//°øµ¿±¸¸Å »èÁ¦
-	public int deleteGp(int itemId) {
+	//ï¿½Ö¹ï¿½ï¿½Ï±ï¿½ 
+	public int order(String userId, int orderId){
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			int result = sqlSession.delete(namespace + ".deleteGp", itemId);
+			int result = sqlSession.delete(namespace + ".cancelGp", userId); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 			if(result > 0) { sqlSession.commit(); }
 			return result;
 		}finally { sqlSession.close(); }
 	}
 	
-	
-	//°øµ¿±¸¸Å Âü°¡
-	public int participateGp(int itemId, String userName) {
+	//Ä«Æ®ï¿½ï¿½ ï¿½ß°ï¿½ 
+	public int addCart(String userId, int itemId, int price) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			int result = sqlSession.selectOne(namespace + ".cancelGp", itemId + userName);
+			int result = sqlSession.insert(namespace + ".addCart", userId); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 			if(result > 0) { sqlSession.commit(); }
-			return result;
-		}finally { sqlSession.close(); }
-		//return GpMapper.participate(itemId, userName);
-	}
-	
-	//°øµ¿±¸¸Å Ãë¼Ò º¸·ù(Äõ¸® ¾î¶»°Ô ÇØ¾ßÇÒÁö Àß ¸ð¸£´Â »óÅÂ)
-	public int cancelGp(int itemId) {
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-		try {
-			int result = sqlSession.delete(namespace + ".cancelGp", itemId);
-			if(result > 0) { sqlSession.commit(); }
-			return result;
-		}finally { sqlSession.close(); }
-	}
-	
-	//°øµ¿±¸¸Å °Ë»ö
-	public List<GpModel> searchGp(String name, String itemKind) {
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-		try {
-			List<GpModel> result = sqlSession.selectList(namespace + ".cancelGp", name + itemKind);
-			if(result != null) { sqlSession.commit(); }
 			return result;
 		}finally { sqlSession.close(); }
 		//return GpMapper.searchGp(name, itemKind);
 	}
 	
-	//°øµ¿±¸¸Å Âü¿©ÀÚ ÀÖ´ÂÁö È®ÀÎ (ÀÖÀ¸¸é »èÁ¦ ¸øÇÔ)
-	public boolean is_GPJP_exist(int itemId) {	
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-		try {
-			GpModel model = (GpModel)sqlSession.selectOne(namespace + ".cancelGp", itemId);
-			int result = model.getCurrentCon();
-			if(result > 0) { return true; }
-			else { return false; }
-		}finally { sqlSession.close(); }
-	}
 	
-	public int cancelGpJPId(int itemId) {
+	//ï¿½Ø´ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ø´ï¿½ itemIdï¿½ï¿½ ï¿½î°³ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½
+	public int getItemCount(int itemId, String userId) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			int result = sqlSession.delete(namespace + ".cancelGpJPId", itemId);
-			if(result < 0) { sqlSession.commit(); }
+			int result = sqlSession.selectOne(namespace + ".containsItemId", userId); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 			return result;
 		}finally { sqlSession.close(); }
 	}
 	
+	//quantity + 1
+	public void incrementQuantityByItemId(int itemId, String userId) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			sqlSession.update(namespace + ".incrementQuantityByItemId", userId); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+		}finally { sqlSession.close(); }
+	}
 	
 }

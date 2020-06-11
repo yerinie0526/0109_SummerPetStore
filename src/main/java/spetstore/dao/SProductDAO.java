@@ -1,4 +1,4 @@
-package summerpetstore.dao;
+package spetstore.dao;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,7 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.stereotype.Repository;
 
-import summerpetstore.model.ItemModel;
+import spetstore.model.ItemModel;
 
 @Repository
 public class SProductDAO {

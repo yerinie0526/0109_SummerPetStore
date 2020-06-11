@@ -1,4 +1,4 @@
-package summerpetstore.controller;
+package spetstore.controller;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,32 +10,32 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import summerpetstore.model.CartModel;
-import summerpetstore.service.CartService;
+import spetstore.model.CartModel;
+import spetstore.service.CartService;
 
 
 @Controller
 @SessionAttributes("sessionCart")
 public class CartController {
 	@Autowired
-	private CartService cartService;	//ÀÓÀÇ·Î ÀÌ¸§ Áö¾ú¾î¿ä! cart°ü·Ã ¼­ºñ½º
+	private CartService cartService;	//ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½! cartï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	
 	public void setCartService(CartService cartService) {
 		this.cartService = cartService;
 	}
 	
-	@RequestMapping("spetitem/addCart") //addCartÈ£Ãâ 
+	@RequestMapping("spetitem/addCart") //addCartÈ£ï¿½ï¿½ 
 	public String addCart(@RequestParam("itemId") int itemId,@RequestParam("userId") String userId, @RequestParam("price") int price, Model model) {
-		CartModel cart;	//cart modelÀÌ µé¾î°¡¾ßÇÒ°Å°°¾Æ¼­ ÀÏ´Ü ÀÌ·¸°Ô Ãß°¡Çß¾î¿ä..
+		CartModel cart;	//cart modelï¿½ï¿½ ï¿½ï¿½î°¡ï¿½ï¿½ï¿½Ò°Å°ï¿½ï¿½Æ¼ï¿½ ï¿½Ï´ï¿½ ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ß¾ï¿½ï¿½..
 		
-		if(cartService.containsItemId(itemId, userId))	//Àå¹Ù±¸´Ï Ãß°¡ÇÏ·Á´Â ¾ÆÀÌÅÛÀÌ ÀÌ¹Ì Á¸ÀçÇÏ´Â °æ¿ì
-			cartService.incrementQuantityByItemId(itemId, userId); 	//ÇØ´çÇÏ´Â ¾ÆÀÌÅÛÀÇ ¼ö·®¸¸ Áõ°¡½ÃÅ´
+		if(cartService.containsItemId(itemId, userId))	//ï¿½ï¿½Ù±ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½
+			cartService.incrementQuantityByItemId(itemId, userId); 	//ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å´
 		else
-			cartService.addCart(userId, itemId, price); //¾Æ´Ñ°æ¿ì »õ·Î Àå¹Ù±¸´Ï¿¡ Ãß°¡ 
-			//¼öÇö¾Æ addCart¿¡ ¸Å°³º¯¼ö userIdµµ ÀÖ¾î¾ßÇØ¼­ ÀÏ´Ü ÇÏ³ª ´õ ³Ö¾ú¾î!¤»¤»¤»¤»
+			cartService.addCart(userId, itemId, price); //ï¿½Æ´Ñ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ù±ï¿½ï¿½Ï¿ï¿½ ï¿½ß°ï¿½ 
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ addCartï¿½ï¿½ ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½ userIdï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½Ï´ï¿½ ï¿½Ï³ï¿½ ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½!ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		
 		//model.addAttribute("cart", cart);
-		return "spetitem/sListDetail"; //Àå¹Ù±¸´Ï output view·Î º¸³»ÁÖ±â
+		return "spetitem/sListDetail"; //ï¿½ï¿½Ù±ï¿½ï¿½ï¿½ output viewï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
 		
 	}
 	
@@ -45,18 +45,18 @@ public class CartController {
 			if(cartService.is_item_exist())
 		return "user/myPage/cart"; 
 		
-	}//Àå¹Ù±¸´Ï·Î ÀÌµ¿---ÀÌ ±â´ÉÀº Àå¹Ù±¸´Ï·Î ÀÌµ¿ÇÒ¶§ Àå¹Ù±¸´Ï¸¦ »ý¼ºÇØ¼­ createcartÀÎ°¡¿ä..?
+	}//ï¿½ï¿½Ù±ï¿½ï¿½Ï·ï¿½ ï¿½Ìµï¿½---ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ù±ï¿½ï¿½Ï·ï¿½ ï¿½Ìµï¿½ï¿½Ò¶ï¿½ ï¿½ï¿½Ù±ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ createcartï¿½Î°ï¿½ï¿½ï¿½..?
 	
 	
 	@RequestMapping("mypage/cart/delete") 
 	public String deleteItem(@RequestParam("userId") String userId, @RequestParam("itemId") int itemId) {
 		cartService.deleteCart(userId, itemId);
 		return "user/myPage/cart"; 
-	}//Àå¹Ù±¸´Ï ¹°Ç° »èÁ¦
+	}//ï¿½ï¿½Ù±ï¿½ï¿½ï¿½ ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½
 	
 	@RequestMapping("mypage/cart/pay") 
 	public String pay(@RequestParam("userId") String userId, @RequestParam("orderId") int orderId) {
 		cartService.order(userId, orderId);
 		return "user/myPage/sucPay"; 
-	}//Àå¹Ù±¸´Ï ¹°Ç° °áÁ¦
+	}//ï¿½ï¿½Ù±ï¿½ï¿½ï¿½ ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½
 }
