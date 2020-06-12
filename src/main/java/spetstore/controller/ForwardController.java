@@ -15,21 +15,26 @@ public class ForwardController {
 		this.forwardService = forwardService;
 	}
 	
-	@RequestMapping("mypage") //mypageȣ�� 
+	@RequestMapping("/mypage") //mypage호占쏙옙 
 	public String showMyPage(@RequestParam("userId") String userId) {
 		if(forwardService.is_admin())
-			return "user/summerPage"; //���
+			return "user/summerPage"; //占쏘영占쏙옙
 		else
-			return"user/myPage"; //�����
-	}//������������ �̵� (�����/���)
+			return"user/myPage"; //占쏙옙占쏙옙占�
+	}//占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占싱듸옙 (占쏙옙占쏙옙占�/占쏘영占쏙옙)
 	
-	@RequestMapping("market") //marketȣ�� 
+	@RequestMapping("/market") //market호占쏙옙 
 	public String moveMarketSearch() {
 			return"market/mSearch"; 
-	}//���Ͱ˻����� �̵� 
+	}//占쏙옙占싶검삼옙占쏙옙占쏙옙 占싱듸옙 
 	
-	@RequestMapping("market/register") 
+	@RequestMapping("/market/register") 
 	public String moveMarketRegister(@RequestParam("userId") String userId) {
 			return"market/iRegister"; 
-	}//��ǰ���â���� �̵� 
+	}//占쏙옙품占쏙옙占시�占쏙옙占쏙옙 占싱듸옙 
+	
+	@RequestMapping("/auction") 
+	public String moveAuctionSearch(@RequestParam("userId") String userId) {
+			return"auction/aSearch"; 
+	}//경매 검색창으로 이동
 }

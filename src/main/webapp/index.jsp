@@ -1,4 +1,4 @@
-<%@ include file="WEB-INF/summerpetstore/IncludeTop.jsp" %>
+<%@ include file="WEB-INF/summerpetstore/IncludeTop.jsp" %> 
 
 <table style="border:none;border-collapse:collapse;width:100%">
   <tr>

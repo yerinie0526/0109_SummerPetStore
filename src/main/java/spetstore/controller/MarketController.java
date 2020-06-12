@@ -20,25 +20,32 @@ public class MarketController {
 		this.marketService = marketService;
 	}
 	
-	@RequestMapping("market/register") 
+	@RequestMapping("/market/register") 
 	public String registerMarket(@RequestParam("userId") String userId, @RequestParam("marketId") int marketId) {
 		
 		marketService.registerItem(userId, marketId);
 		return "market/mSearach"; 
 		
-	}//占쏙옙占싶뱄옙품占쏙옙占�
+	}//�뜝�룞�삕�뜝�떢諭꾩삕�뭹�뜝�룞�삕�뜝占�
 	
-	@RequestMapping("market/delete") 
+	@RequestMapping("/market/delete") 
 	public String deleteMarket(@RequestParam("marketId") int marketId) {
 		marketService.deleteItem(marketId);
 		return "market/mSearach"; 
 		
-	}//占쏙옙占싶뱄옙품占쏙옙占쏙옙
+	}//�뜝�룞�삕�뜝�떢諭꾩삕�뭹�뜝�룞�삕�뜝�룞�삕
 	
-	@RequestMapping("market/mitemView") 
+	@RequestMapping("/market/mitemView") 
 	public String updateMarket(@RequestParam("userId") String userId) {
 		marketService.updateItem(userId);
 		return "market/mListDetail"; 
 		
-	}//占쏙옙占싶뱄옙품占쏙옙占쏙옙
+	}//�뜝�룞�삕�뜝�떢諭꾩삕�뭹�뜝�룞�삕�뜝�룞�삕
+	
+	@RequestMapping("/market/search") 
+	public String select(@RequestParam("name") String name, @RequestParam("itemKind")String itemKind) {
+		marketService.searchItem(name, itemKind);
+		return "market/mListDetail"; 
+		
+	}//장터검색
 }

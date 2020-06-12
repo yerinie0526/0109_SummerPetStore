@@ -38,36 +38,36 @@ public class UserController {
 	}
 	
 	
-	@RequestMapping("register") //registerȣ�� 
+	@RequestMapping("/register") //register호占쏙옙 
 	public String registerUser(@RequestParam("userId") String userId, Model model) {
-		String name = userService.registerUser(userId); 	//ȸ����� �Լ� return ���� username����! 
+		String name = userService.registerUser(userId); 	//회占쏙옙占쏙옙占� 占쌉쇽옙 return 占쏙옙占쏙옙 username占쏙옙占쏙옙! 
 		model.addAttribute("username", name);
 		return "sucRegist";
-	}//ȸ�����
+	}//회占쏙옙占쏙옙占�
 	
-	@RequestMapping("main") 
+	@RequestMapping("/main") 
 	public String deleteUser(@RequestParam("userId") String userId, Model model) {
 		if(auctionService.is_auction_exist()){
-			auctionService.cancelSBId(userId);		//��ſ� ������ ��� �ش��ϴ� ����ڸ� ���ְ� ��� ����
+			auctionService.cancelSBId(userId);		//占쏙옙탓占� 占쏙옙占쏙옙占쏙옙 占쏙옙占� 占쌔댐옙占싹댐옙 占쏙옙占쏙옙美占� 占쏙옙占쌍곤옙 占쏙옙占� 占쏙옙占쏙옙
 		}else if(marketService.is_market_exist()) {
-			marketService.deleteMarket(userId);		//����� �Ϲݱ��Ű� �ִ� ��� �ش�
+			marketService.deleteMarket(userId);		//占쏙옙占쏙옙占� 占싹반깍옙占신곤옙 占쌍댐옙 占쏙옙占� 占쌔댐옙
 		}else if(gpService.is_gp_exist()){
 			gpService.deleteGP(userId);
 		}
 		
 		return "main";
-	}	//ȸ��Ż��
+	}	//회占쏙옙탈占쏙옙
 	
 	
-	@RequestMapping("login") //registerȣ�� 
+	@RequestMapping("/login") //register호占쏙옙 
 	public String login(@RequestParam("username") String username, @RequestParam("password") String password) {
 		
 		return "main";
-	}//�α���
+	}//占싸깍옙占쏙옙
 	
-	@RequestMapping("mypage/update") //registerȣ�� 
+	@RequestMapping("/mypage/update") //register호占쏙옙 
 	public String updateUser(@RequestParam("userId") String userId) {
 		userService.updateMyPage(userId);
 		return "user/myPage";
-	}//ȸ����������
+	}//회占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙
 }
