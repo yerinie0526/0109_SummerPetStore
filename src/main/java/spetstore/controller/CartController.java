@@ -64,5 +64,5 @@ public class CartController {
 	public String addCart(@RequestParam("marketId") String marketId, @RequestParam("itemId") int itemId, @RequestParam("userId") String userId) {
 		cartService.addCart(userId, itemId, price);//price가 들어가야하나요??
 		return "market/mListDetail"; 
-	}//�옣�꽣-�옣諛붽뎄�땲 �떞湲�
+	}//장터- 장바구니 담기
 }
