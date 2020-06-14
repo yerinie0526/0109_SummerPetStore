@@ -62,7 +62,7 @@ public class CartController {
 	
 	@RequestMapping("/market/addcart") 
 	public String addCart(@RequestParam("marketId") String marketId, @RequestParam("itemId") int itemId, @RequestParam("userId") String userId) {
-		cartService.addCart(userId, itemId, price);//price媛� �븘�슂�븳媛��슂??
+		cartService.addCart(userId, itemId, price);//price가 들어가야하나요??
 		return "market/mListDetail"; 
 	}//�옣�꽣-�옣諛붽뎄�땲 �떞湲�
 }
