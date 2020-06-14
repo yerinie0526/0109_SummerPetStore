@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import summerpetstore.dao.GpDAO;
-import summerpetstore.model.GpModel;
+import spetstore.dao.GpDAO;
+import spetstore.model.GpModel;
 
 @Service
 public class GpService {
