@@ -1,4 +1,4 @@
-package summerpetstore.model;
+package spetstore.model;
 
 import java.util.Date;
 

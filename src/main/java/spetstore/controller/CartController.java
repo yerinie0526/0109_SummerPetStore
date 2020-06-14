@@ -18,24 +18,24 @@ import spetstore.service.CartService;
 @SessionAttributes("sessionCart")
 public class CartController {
 	@Autowired
-	private CartService cartService;	//占쏙옙占실뤄옙 占싱몌옙 占쏙옙占쏙옙占쏙옙占�! cart占쏙옙占쏙옙 占쏙옙占쏙옙
+	private CartService cartService;
 	
 	public void setCartService(CartService cartService) {
 		this.cartService = cartService;
 	}
 	
-	@RequestMapping("/spetitem/addCart") //addCart호占쏙옙 
+	@RequestMapping("/spetitem/addCart") //한국어된느지 실험
 	public String addCart(@RequestParam("itemId") int itemId,@RequestParam("userId") String userId, @RequestParam("price") int price, Model model) {
-		CartModel cart;	//cart model占쏙옙 占쏙옙載∽옙占쏙옙柰키占쏙옙티占� 占싹댐옙 占싱뤄옙占쏙옙 占쌩곤옙占쌩억옙占�..
+		CartModel cart;	
 		
-		if(cartService.containsItemId(itemId, userId))	//占쏙옙袂占쏙옙占� 占쌩곤옙占싹뤄옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占싱뱄옙 占쏙옙占쏙옙占싹댐옙 占쏙옙占�
-			cartService.incrementQuantityByItemId(itemId, userId); 	//占쌔댐옙占싹댐옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙킴
+		if(cartService.containsItemId(itemId, userId))	//만약 물건이 이미 있다면
+			cartService.incrementQuantityByItemId(itemId, userId); 	//수량 + 1
 		else
-			cartService.addCart(userId, itemId, price); //占싣닌곤옙占� 占쏙옙占쏙옙 占쏙옙袂占쏙옙臼占� 占쌩곤옙 
-			//占쏙옙占쏙옙占쏙옙 addCart占쏙옙 占신곤옙占쏙옙占쏙옙 userId占쏙옙 占쌍억옙占쏙옙漫占� 占싹댐옙 占싹놂옙 占쏙옙 占쌍억옙占쏙옙!占쏙옙占쏙옙占쏙옙占쏙옙
+			cartService.addCart(userId, itemId, price);  //새로 추가
+			
 		
 		//model.addAttribute("cart", cart);
-		return "spetitem/sListDetail"; //占쏙옙袂占쏙옙占� output view占쏙옙 占쏙옙占쏙옙占쌍깍옙
+		return "spetitem/sListDetail"; 
 		
 	}
 	
@@ -45,24 +45,24 @@ public class CartController {
 			if(cartService.is_item_exist())
 		return "user/myPage/cart"; 
 		
-	}//占쏙옙袂占쏙옙狗占� 占싱듸옙---占쏙옙 占쏙옙占쏙옙占� 占쏙옙袂占쏙옙狗占� 占싱듸옙占쌀띰옙 占쏙옙袂占쏙옙玖占� 占쏙옙占쏙옙占쌔쇽옙 createcart占싸곤옙占쏙옙..?
+	}//�뜝�룞�삕熬귛뜝�룞�삕�떁�뜝占� �뜝�떛�벝�삕---�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝占� �뜝�룞�삕熬귛뜝�룞�삕�떁�뜝占� �뜝�떛�벝�삕�뜝���씛�삕 �뜝�룞�삕熬귛뜝�룞�삕�럷�뜝占� �뜝�룞�삕�뜝�룞�삕�뜝�뙏�눦�삕 createcart�뜝�떥怨ㅼ삕�뜝�룞�삕..?
 	
 	
 	@RequestMapping("/mypage/cart/delete") 
 	public String deleteItem(@RequestParam("userId") String userId, @RequestParam("itemId") int itemId) {
 		cartService.deleteCart(userId, itemId);
 		return "user/myPage/cart"; 
-	}//占쏙옙袂占쏙옙占� 占쏙옙품 占쏙옙占쏙옙
+	}//�뜝�룞�삕熬귛뜝�룞�삕�뜝占� �뜝�룞�삕�뭹 �뜝�룞�삕�뜝�룞�삕
 	
 	@RequestMapping("/mypage/cart/pay") 
 	public String pay(@RequestParam("userId") String userId, @RequestParam("orderId") int orderId) {
 		cartService.order(userId, orderId);
 		return "user/myPage/sucPay"; 
-	}//占쏙옙袂占쏙옙占� 占쏙옙품 占쏙옙占쏙옙
+	}//�뜝�룞�삕熬귛뜝�룞�삕�뜝占� �뜝�룞�삕�뭹 �뜝�룞�삕�뜝�룞�삕
 	
 	@RequestMapping("/market/addcart") 
 	public String addCart(@RequestParam("marketId") String marketId, @RequestParam("itemId") int itemId, @RequestParam("userId") String userId) {
-		cartService.addCart(userId, itemId, price);//price가 필요한가요??
+		cartService.addCart(userId, itemId, price);//price媛� �븘�슂�븳媛��슂??
 		return "market/mListDetail"; 
-	}//장터-장바구니 담기
+	}//�옣�꽣-�옣諛붽뎄�땲 �떞湲�
 }

@@ -1,4 +1,4 @@
-package summerpetstore.service;
+package spetstore.service;
 
 import java.util.List;
 

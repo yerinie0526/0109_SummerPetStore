@@ -1,4 +1,4 @@
-package summerpetstore.model;
+package spetstore.model;
 
 public class CartModel {
 	

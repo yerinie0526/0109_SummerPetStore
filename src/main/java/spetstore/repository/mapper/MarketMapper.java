@@ -1,4 +1,4 @@
-package summerpetstore.repository.mapper;
+package spetstore.repository.mapper;
 
 public interface MarketMapper {
 
