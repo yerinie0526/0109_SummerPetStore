@@ -19,15 +19,20 @@
 
 	<mvc:annotation-driven/>		<!-- create RequestMappingHandlerMapping -->
 	
-	<bean id="viewResolver"
+	<!-- <bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-		<property name="prefix" value="/WEB-INF/jsp/"/>
+		<property name="prefix" value="/WEB-INF/"/>
 		<property name="suffix" value=".jsp"/>
-	</bean>
+	</bean>-->
 	
-	<mvc:view-controller path="/shop/index.do" view-name="index"/>
+	<mvc:view-controller path="/index" view-name="index"/>
 	<mvc:view-controller path="/shop/signonForm.do" view-name="SignonForm"/> 
+	
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
 	
 	<mvc:interceptors>
 		<mvc:interceptor>
