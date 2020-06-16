@@ -24,45 +24,45 @@ public class CartController {
 		this.cartService = cartService;
 	}
 	
-	@RequestMapping("/spetitem/addCart") //한국어된느지 실험
+	@RequestMapping("/spetitem/addCart") //��援��대����吏� �ㅽ��
 	public String addCart(@RequestParam("itemId") int itemId,@RequestParam("userId") String userId, @RequestParam("price") int price, Model model) {
 		CartModel cart;	
 		
-		if(cartService.containsItemId(itemId, userId))	//만약 물건이 이미 있다면
-			cartService.incrementQuantityByItemId(itemId, userId); 	//수량 + 1
+		if(cartService.containsItemId(itemId, userId))	//留��� 臾쇨굔�� �대�� ���ㅻ㈃
+			cartService.incrementQuantityByItemId(itemId, userId); 	//���� + 1
 		else
-			cartService.addCart(userId, itemId, price);  //새로 추가
+			cartService.addCart(userId, itemId, price);  //��濡� 異�媛�
 			
 		
 		//model.addAttribute("cart", cart);
 		return "spetitem/sListDetail"; 
 		
 	}
-	
+	//실험
 
 	@RequestMapping("/cart") 
 	public String createCart(HttpSession sesseion) {
 			if(cartService.is_item_exist())
 		return "user/myPage/cart"; 
 		
-	}//�뜝�룞�삕熬귛뜝�룞�삕�떁�뜝占� �뜝�떛�벝�삕---�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝占� �뜝�룞�삕熬귛뜝�룞�삕�떁�뜝占� �뜝�떛�벝�삕�뜝���씛�삕 �뜝�룞�삕熬귛뜝�룞�삕�럷�뜝占� �뜝�룞�삕�뜝�룞�삕�뜝�뙏�눦�삕 createcart�뜝�떥怨ㅼ삕�뜝�룞�삕..?
+	}//占쎈��占쎈�占쎌���ш���占쎈�占쎌��占쎈��占쎈����占� 占쎈��占쎈��占쎈�占쎌��---占쎈��占쎈�占쎌�� 占쎈��占쎈�占쎌��占쎈��占쎈�占쎌��占쎈����占� 占쎈��占쎈�占쎌���ш���占쎈�占쎌��占쎈��占쎈����占� 占쎈��占쎈��占쎈�占쎌��占쎈��占쏙옙占쎌��占쎌�� 占쎈��占쎈�占쎌���ш���占쎈�占쎌��占쎈�뤄옙����占� 占쎈��占쎈�占쎌��占쎈��占쎈�占쎌��占쎈��占쎈��占쎈��占쎌�� createcart占쎈��占쎈�ζ�ⓦ�쇱��占쎈��占쎈�占쎌��..?
 	
 	
 	@RequestMapping("/mypage/cart/delete") 
 	public String deleteItem(@RequestParam("userId") String userId, @RequestParam("itemId") int itemId) {
 		cartService.deleteCart(userId, itemId);
 		return "user/myPage/cart"; 
-	}//�뜝�룞�삕熬귛뜝�룞�삕�뜝占� �뜝�룞�삕�뭹 �뜝�룞�삕�뜝�룞�삕
+	}//占쎈��占쎈�占쎌���ш���占쎈�占쎌��占쎈����占� 占쎈��占쎈�占쎌��占쎈�� 占쎈��占쎈�占쎌��占쎈��占쎈�占쎌��
 	
 	@RequestMapping("/mypage/cart/pay") 
 	public String pay(@RequestParam("userId") String userId, @RequestParam("orderId") int orderId) {
 		cartService.order(userId, orderId);
 		return "user/myPage/sucPay"; 
-	}//�뜝�룞�삕熬귛뜝�룞�삕�뜝占� �뜝�룞�삕�뭹 �뜝�룞�삕�뜝�룞�삕
+	}//占쎈��占쎈�占쎌���ш���占쎈�占쎌��占쎈����占� 占쎈��占쎈�占쎌��占쎈�� 占쎈��占쎈�占쎌��占쎈��占쎈�占쎌��
 	
 	@RequestMapping("/market/addcart") 
 	public String addCart(@RequestParam("marketId") String marketId, @RequestParam("itemId") int itemId, @RequestParam("userId") String userId) {
-		cartService.addCart(userId, itemId, price);//price가 들어가야하나요??
+		cartService.addCart(userId, itemId, price);//price媛� �ㅼ�닿��쇳������??
 		return "market/mListDetail"; 
-	}//장터- 장바구니 담기
+	}//�ν��- �λ�援щ�� �닿린
 }
